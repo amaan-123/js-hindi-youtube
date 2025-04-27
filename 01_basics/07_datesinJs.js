@@ -14,19 +14,18 @@ let myCreatedDate = new Date("01-14-2023")
 
 let myTimeStamp = Date.now()
 
-console.log(myTimeStamp);
-console.log(myCreatedDate.getTime());
-console.log(Math.floor(Date.now()/1000));
+// console.log(myTimeStamp);
+// console.log(myCreatedDate.getTime());
+// console.log(Math.floor(Date.now()/1000));
 
-// let newDate = new Date()
-// console.log(newDate);
+let newDate = new Date()
+// console.log(newDate.toLocaleString());
 // console.log(newDate.getMonth() + 1);
-// console.log(newDate.getDay());
+// console.log(newDate.getDate());
 
 // // `${newDate.getDay()} and the time `
 
-// newDate.toLocaleString('default', {
-//     weekday: "long",
-    
-// })
+console.log(newDate.toLocaleString('default', {
+  timeStyle: "full"
+}));
 
