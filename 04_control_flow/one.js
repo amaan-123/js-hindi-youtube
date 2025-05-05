@@ -20,9 +20,10 @@ const temperature = 41
 
 // console.log(`User power: ${power}`);
 
-
 // const balance = 1000
 
+// // can write in one-line where scope is implicit but don't use commas
+// //like line below
 // if (balance > 500) console.log("test"),console.log("test2");
 
 // if (balance < 500) {

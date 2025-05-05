@@ -10,7 +10,7 @@ if (userEmail) {
 
 // false, 0, -0, BigInt 0n, "", null, undefined, NaN
 
-//truthy values
+// truthy values
 // "0", 'false', " ", [], {}, function(){}
 
 // if (userEmail.length === 0) {

@@ -19,6 +19,7 @@ switch (month) {
     case "march":
         console.log("march");
         break;
+        // if we don't have break statement, it will execute all the cases below it, except the default case
     case "april":
         console.log("april");
         break;

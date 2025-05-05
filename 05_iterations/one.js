@@ -39,6 +39,16 @@ for (let index = 0; index < myArray.length; index++) {
     
 // }
 
+/*
+Application of `continue`:
+
+The `continue` keyword can only be used inside loops (e.g., `for`, `while`, `do-while`). It skips the rest of the current iteration and proceeds to the next iteration of the loop. It cannot be used with conditionals or any other control structures.
+
+The `continue` statement is used to skip the current iteration of a loop and proceed to the next iteration, when a condition is met.
+
+In this example, when the index is 5, the message "Detected 5" is logged and the loop skips printing the value 5, continuing with the next value.
+*/
+
 for (let index = 1; index <= 20; index++) {
     if (index == 5) {
         console.log(`Detected 5`);
