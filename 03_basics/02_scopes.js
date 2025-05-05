@@ -44,15 +44,18 @@ if (true) {
 // ++++++++++++++++++ interesting ++++++++++++++++++
 
 
-console.log(addone(5))
+// Testing function hoisting with function declarations and function expressions
 
-function addone(num){
+// Function hoisting allows us to call a function before its declaration
+console.log(addone(5)) // This works because `addone` is a function declaration
+
+function addone(num) {
     return num + 1
 }
 
-
-
-addTwo(5)
-const addTwo = function(num){
+// Testing function expressions and hoisting
+// This will throw an error because `addTwo` is a function expression and is not hoisted
+addTwo(5) 
+const addTwo = function(num) {
     return num + 2
 }

@@ -38,10 +38,12 @@ function loginUserMessage(username = "sam"){// does not remain same default "sam
 // console.log(loginUserMessage("hitesh"))
 // console.log(loginUserMessage("hitesh"))
 
-
-function calculateCartPrice(val1, val2, ...num1){
+function calculateCartPrice(...num1){
     return num1
 }
+// function calculateCartPrice(val1, val2, ...num1){
+//     return num1
+// }
 
 // console.log(calculateCartPrice(200, 400, 500, 2000))
 
