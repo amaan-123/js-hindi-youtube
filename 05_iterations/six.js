@@ -1,27 +1,32 @@
-// const coding = ["js", "ruby", "java", "python", "cpp"]
+// 2. filter: creates a new array with all elements that pass the test implemented by the provided function
 
+const coding = ["js", "ruby", "java", "python", "cpp"]
+
+// // for each can perform an action like print on each element of the array
+// // But it can't conditionally check or return a value, it returns undefined
 
 // const values = coding.forEach( (item) => {
-//     //console.log(item);
+//     // console.log(item);
 //     return item
 // } )
-
 // console.log(values);
 
 const myNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-// const newNums = myNums.filter( (num) => {
+// const numsImplicitReturn = myNums.filter( (num) => num > 4)
+// const numsExplicitReturn = myNums.filter( (num) => {
 //     return num > 4
 // } )
+// console.log(numsImplicitReturn);
+// console.log(numsExplicitReturn);
 
+// // to do the same using forEach, we need to create a new array and push the values into it after condition check:
 // const newNums = []
-
 // myNums.forEach( (num) => {
 //     if (num > 4) {
 //         newNums.push(num)
 //     }
 // } )
-
 // console.log(newNums);
 
 
@@ -37,9 +42,9 @@ const books = [
     { title: 'Book Nine', genre: 'Non-Fiction', publish: 1981, edition: 1989 },
   ];
 
-  let userBooks = books.filter( (bk) => bk.genre === 'History')
+let userBooks = books.filter( (bk) => bk.genre === 'History')
 
-  userBooks = books.filter( (bk) => { 
-    return bk.publish >= 1995 && bk.genre === "History"
+userBooks = books.filter( (bk) => { 
+  return bk.publish >= 1995 && bk.genre === "History"
 })
-  console.log(userBooks);
+console.log(userBooks);

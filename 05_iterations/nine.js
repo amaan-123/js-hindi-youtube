@@ -1,5 +1,8 @@
+// 4. reduce: executes a reducer function (that you provide) on each element of the array, resulting in a single output value
+// usage shopping cart example
 const myNums = [1, 2, 3]
 
+// calculate the sum of all numbers in the array using reduce
 // const myTotal = myNums.reduce(function (acc, currval) {
 //     console.log(`acc: ${acc} and currval: ${currval}`);
 //     return acc + currval
