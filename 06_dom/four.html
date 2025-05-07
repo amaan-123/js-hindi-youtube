@@ -12,6 +12,7 @@
     </ul>
 </body>
 <script>
+    // usual approach
     function addLanguage(langName){
         const li = document.createElement('li');
         li.innerHTML = `${langName}`
@@ -20,12 +21,13 @@
     addLanguage("python")
     addLanguage("typescript")
 
-    function addOptiLanguage(langName){
+    // optimised approach
+    function addOptimisedLanguage(langName){
         const li = document.createElement('li');
         li.appendChild(document.createTextNode(langName))
         document.querySelector('.language').appendChild(li)
     }
-    addOptiLanguage('golang')
+    addOptimisedLanguage('golang')
 
     //Edit
     const secondLang = document.querySelector("li:nth-child(2)")

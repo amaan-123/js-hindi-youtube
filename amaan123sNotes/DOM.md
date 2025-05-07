@@ -68,31 +68,23 @@ Here are detailed markdown notes from the entire video transcript:
 ## Setting up the HTML
 
 .className(not .class)
+
 ![alt text](<Screenshot (182).png>)
 
 .getAttribute('class'), setAttribute('key','value')
 > .setAttribute() overwrites so be careful to include all values
 
 ![alt text](<Screenshot (183).png>)
+
 ![alt text](<Screenshot (184).png>)
 
 store element in variable
+
 ![alt text](<Screenshot (185).png>)
 
 use element's variable names to access properties like style & it's key-value pairs
-![alt text](<Screenshot (186).png>)
 
-- The basic HTML structure includes:
-  - `DOCTYPE html`
-  - `html`
-  - `head` (with `title: DOM Learning`)
-  - `body`
-- Inside the `body`, a `div` with class `bg-black` was initially used, but the class was later moved to the `body` tag for full page styling.
-- Inside the `div` (or initially the body), there is:
-  - An `h1` tag with class `heading` and title `Learning DOM`, containing the text "DOM Learning on Chai aur Code".
-  - A `p` tag with lorem ipsum text.
-- An `id` attribute `title` is added to the `h1` tag.
-- Basic dark background and text color styling is added using an inline `<style>` tag targeting the `bg-black` class.
+![alt text](<Screenshot (186).png>)
 
 ```html
 <!DOCTYPE html>
@@ -108,22 +100,6 @@ use element's variable names to access properties like style & it's key-value pa
         }
     </style>
 </head>
-<body class="bg-black">
-    <div class="bg-black">
-        <h1 id="title" class="heading" title="Learning DOM">DOM Learning on Chai aur Code</h1>
-        <p>lorem ipsum dolor sit amet</p>
-    </div>
-</body>
-</html>
-```
-
-- Later, more elements are added for demonstration:
-  - Multiple `h2` tags with lorem ipsum text.
-  - An `input` field with type `password`.
-  - An unordered list (`ul`) with list items (`li`).
-  - Classes (`list-item`) are added to the list items.
-
-```html
 <body>
     <div class="bg-black">
         <h1 id="title" class="heading" title="Learning DOM">DOM Learning on Chai aur Code</h1>
@@ -150,7 +126,7 @@ use element's variable names to access properties like style & it's key-value pa
 ![alt text](image-6.png)
 
 ```javascript
-title.textContent; // Returns "DOM Learning on Chai aur Code" (even if part is hidden)
+title.textContent; // Returns "DOM Learning on Chai aur Code test text" (even if part is hidden)
 ```
 
 - `innerText`: Returns only the text content that is **visible** on the page, respecting CSS styling (like `display: none`). It ignores HTML tags.
@@ -169,9 +145,10 @@ title.innerHTML; // Returns "DOM Learning on Chai aur Code<span>test text</span>
 - You can also **set** the content using these properties.
 
 ```javascript
-title.innerHTML = '<h1>Chai aur Code</h1>'; // Replaces content with new HTML
-title.textContent = 'New Text Content'; // Replaces content with plain text
-title.innerText = 'Visible Text'; // Replaces visible text content
+// 
+title.innerHTML = '<h1>Chai aur Code</h1>'; // Replaces with new HTML
+title.textContent = 'New Text Content'; // Replaces with plain text
+title.innerText = 'Visible Text'; // Replaces with plain text
 ```
 
 - Setting `innerHTML` allows you to inject HTML structure.
@@ -282,41 +259,394 @@ listItemsArray.forEach(function(li) { // Now forEach is available
 
 - While `forEach` is available on NodeList, converting to an Array using `Array.from()` is still an option if you need other Array methods like `map`.
 
-## Practice on a Real Website (Wikipedia Example)
+## [vid 33] Setting up the HTML and Initial DOM Selection
 
-- The concepts learned can be applied to any web page.
-- Practicing on sites like Wikipedia is useful due to their structured HTML.
-- Using the browser's developer console, elements can be inspected to find their tags, classes, and IDs.
-- `document.querySelectorAll()` was used to select all `h2` elements on a Wikipedia page.
+- The video uses a basic HTML file with a parent `div` containing four child `div` elements representing days of the week (Monday, Tuesday, Wednesday, Thursday).
+- Basic styling (background color, text color) is added to improve readability.
+- The browser's inspector tool is used to view elements and the console to see output.
+- Initial script is added directly within `<script>` tags in the HTML body.
+
+### Selecting the Parent Element
+
+- The first target is to select the parent element.
+- This is done using `document.querySelector`.
+
+- ```javascript
+  const parent = document.querySelector('.parent');
+  console.log(parent);
+  ```
+
+- Logging the `parent` variable shows the parent `div` element, containing its child day elements.
+
+### Accessing Children using `.children`
+
+- An interesting property, `.children`, is introduced to access the child elements of a parent.
+
+- ```javascript
+  console.log(parent.children);
+  ```
+
+- This logs an **HTMLCollection** containing all the child elements.
+- The HTMLCollection shows the four day `div` elements with a length of 4.
+- HTMLCollection is described as an "almost array-like" property.
+
+### Accessing Individual Child Elements
+
+- Individual children can be accessed using array-like indexing on the HTMLCollection.
+
+- ```javascript
+  console.log(parent.children); // Accessing the second child (index 1)
+  ```
+
+- This selects and logs the `div` element representing Tuesday. (Note: Index 0 is Monday, so index 1 is Tuesday).
+
+### Accessing Inner HTML of a Child
+
+- Once an element is selected, its inner HTML can be accessed using `.innerHTML`.
+
+- ```javascript
+  console.log(parent.children.innerHTML);
+  ```
+
+- This logs the text content "Tuesday".
+
+### Looping Through Children
+
+- Although HTMLCollection is not a true array, the classic `for` loop can be used to iterate through its elements.
+
+- ```javascript
+  for (let i = 0; i < parent.children.length; i++) {
+      console.log(parent.children[i].innerHTML);
+  }
+  ```
+
+- This loop iterates through all children and prints their `innerHTML`, showing "Monday", "Tuesday", "Wednesday", and "Thursday".
+
+### Styling Children Directly
+
+- Styling changes can be applied directly to selected child elements.
+- Example: Changing the color of the first child element.
+
+- ```javascript
+  parent.children.style.color = "orange";
+  ```
+
+- This makes the "Monday" text orange.
+- Other styles like padding can also be added.
+
+- ```javascript
+  div.style.padding = "12px"; // Example when creating a new element
+  ```
+
+### Accessing First/Last Element Child
+
+- Properties like `firstElementChild` and `lastElementChild` are very useful for selecting the first or last child element directly.
+
+- ```javascript
+  console.log(parent.firstElementChild);
+  console.log(parent.lastElementChild);
+  ```
+
+- `firstElementChild` selects the first child element (Monday).
+- `lastElementChild` selects the last child element (Thursday).
+- These properties are described as interesting and helpful for targeting elements with JavaScript.
+
+## Traversing from Child to Parent and Siblings
+
+- It's also possible to move from a child element back up to its parent.
+- Selecting a specific child element using `querySelector`.
+
+- ```javascript
+  const dayOne = document.querySelector('.day'); // Selects the first element with class 'day' (Monday)
+  console.log(dayOne);
+  ```
+
+- Using `querySelector` is described as a slightly expensive operation as it traverses the DOM tree. The DOM is described as a tree structure. Understanding the tree structure helps appreciate why DS (Data Structures) are important in this context.
+
+### Accessing the Parent Element from a Child
+
+- The `parentElement` property can be used to directly access the parent of a selected element without traversing the entire tree again. This is more optimized.
+
+- ```javascript
+  console.log(dayOne.parentElement);
+  ```
+
+- This logs the parent `div` element.
+
+### Accessing Sibling Elements
+
+- Sibling elements (elements at the same level) can be accessed using `nextElementSibling` and `previousElementSibling`.
+
+- ```javascript
+  console.log(dayOne.nextElementSibling);
+  ```
+
+- `nextElementSibling` from the first day (`dayOne`) selects the next sibling element (Tuesday).
+
+## Understanding NodeList and Complexities
+
+- A property called `childNodes` provides access to a **NodeList**, which is different from HTMLCollection.
+
+- ```javascript
+  console.log("Nodes: ", parent.childNodes);
+  ```
+
+- Logging `childNodes` reveals a NodeList which often contains more nodes than just the element nodes.
+- In the example, the NodeList has a length of 11(with comment), even though there are only 4 day elements.
+- This is because the DOM tree structure includes more than just elements; it also includes **text nodes** and **comment nodes**.
+- For example, line breaks (enters) in the HTML code are counted as text elements in the NodeList.
+- Adding a comment in the HTML also adds a comment node to the NodeList, increasing its length.
+- The NodeList shows the complexity of the tree structure the browser creates behind the scenes.
+- Understanding `childNodes` is particularly important for concepts like React's internal workings, which heavily use `childNodes` for manipulation in memory.
+
+## Creating New Elements Programmatically
+
+- A new section focuses on creating DOM elements using JavaScript.
+- A new HTML file (`3.html`) is set up with just basic body and styling.
+- The goal is to inject content into the empty body using JavaScript.
+
+### Creating an Element Node
+
+- The `document.createElement()` method is used to create any HTML element.
+
+- ```javascript
+  const div = document.createElement('div'); // Creates a new div element
+  console.log(div);
+  ```
+
+- Creating an element makes it available in memory, but it is **not yet displayed** on the web page.
+- You can create any element type, like `h1`, by passing the tag name to the method.
+
+### Setting Attributes and Properties
+
+![alt text](image-7.png)
+
+- Once an element is created, properties like `className` and `id` can be set directly.
+
+- ```javascript
+  div.className = "main"; // Sets the class name
+  div.id = "myId"; // Sets the ID
+  ```
+
+- The video demonstrates creating a random ID using `Math.random()`, `Math.floor()`, etc., just for demonstration.
+
+- ```javascript
+  div.id = Math.floor(Math.random() * 10 + 1); // Example of setting a random ID
+  ```
+
+- For setting other or custom attributes, the `setAttribute()` method is preferred over direct property assignment in many cases.
+- `setAttribute()` takes the attribute name and value as arguments.
+
+- ```javascript
+  div.setAttribute('title', 'generated title'); // Sets a 'title' attribute
+  ```
+
+- The reason `setAttribute` is sometimes preferred is that direct properties like `className` or `innerText` might first fetch the existing value and then overwrite, whereas `setAttribute` directly sets the value, potentially saving a "round trip".
+
+### Adding Content (Text) to the Element
+
+- Content can be added using `innerText` or `innerHTML`.
+
+- ```javascript
+  div.innerText = "Chai aur Code"; // Sets the text content
+  ```
+
+- However, the video introduces and discusses the alternative approach of creating a **Text Node** and appending it.
+
+- ```javascript
+  const addText = document.createTextNode("Chai aur Code"); // Creates a text node
+  div.appendChild(addText); // Appends the text node to the div element
+  ```
+
+- Creating a text node and appending it is presented as an alternative to using `innerText`/`innerHTML`, preferred by some developers for potential optimization reasons (avoiding the "round trip" discussed earlier), although this is a point of debate.
+
+### Attaching the Element to the Document
+
+- The created element exists in memory but needs to be attached to the document to become visible on the web page.
+- The `appendChild()` method is used to add a child element to an existing parent element in the document.
+- To add the created `div` to the page, it is appended to the `document.body`.
+
+- ```javascript
+  document.body.appendChild(div); // Appends the created div to the body
+  ```
+
+- After this step, the newly created `div` element with its content, attributes, and styles becomes visible on the web page.
+
+## Re-using code
+
+- Once an element can be created and added, this logic can be wrapped in a **function**.
+- The function can accept arguments for text, styles, etc..
+- This function can then be used inside a **loop** to generate multiple elements dynamically.
+
+![alt text](image-8.png)
+
+Okay, here are detailed markdown notes from the provided YouTube transcript, formatted as requested.
+
+## DOM Manipulation: Edit and Remove Elements
+
+This video is the final one covering DOM manipulation. The goal is to feel confident in building projects using DOM manipulation and basic JavaScript. It will cover creating, removing, and editing DOM elements.
+
+### Initial Setup
+
+The video starts by setting up a basic HTML file (`dom-four.html`) with a title "Chai aur Code". Inside the `<body>`, an unordered list (`<ul>`) with the class `language` is created. A list item (`<li>`) is added inside the `<ul>` with the text "JavaScript".
+
+A basic style is added to the `<body>` for visibility, setting the `background-color` to `212127` and `color` to `white`.
+
+### Adding List Items (Basic Approach)
+
+The task is to add another list item. A function named `addLanguage` is designed to take a language name (`langName`) as a parameter.
+
+The steps for this basic approach are:
+
+- Create a list item element. This is done using `document.createElement('li')` and storing it in a variable, e.g., `li`.
+- Add a value to the list item. The basic way is to use `li.innerHTML = langName`.
+- Select the parent unordered list (`<ul>`) with the class `language`. This is done using `document.querySelector('.language')`.
+- **Append** the created list item as a child to the selected parent. This is done using `.appendChild(li)`.
+
+Here's the basic function implementation:
 
 ```javascript
-document.querySelectorAll('h2'); // Returns a NodeList of all h2s
+function addLanguage(langName) {
+    const li = document.createElement('li'); // Create <li> element
+    li.innerHTML = langName; // Add content using innerHTML
+    document.querySelector('.language').appendChild(li); // Select parent and append child
+}
 ```
 
-- This NodeList was stored in a variable.
+To use the function, call it with the desired language name:
 
 ```javascript
-const allH2 = document.querySelectorAll('h2');
+addLanguage("python"); // Adds "python"
+addLanguage("typescript"); // Adds "typescript"
 ```
 
-- The `forEach` loop was then used on the NodeList to iterate through each `h2` element.
-- Inside the loop, styles were applied to each individual element.
+A potential issue with using `innerHTML` and appending to the end of a list like this, especially with many elements, is that it may require the entire DOM tree to be traversed repeatedly, potentially causing performance issues. While not a major problem for small projects, it's less **optimized**.
+
+### Adding List Items (Optimized Approach)
+
+An alternative, more **optimized** approach for adding elements is suggested. This approach also uses a function, named `addOptiLanguage`.
+
+The steps for this optimized approach are:
+
+- Create a list item element. Similar to the basic approach, use `document.createElement('li')`.
+- Instead of using `innerHTML`, create a **text node** for the content. This is done using `document.createTextNode(langName)`.
+- **Append** the created text node directly to the list item element. This is done using `li.appendChild(textNode)`. This approach avoids traversing the entire tree structure required by `innerHTML`.
+- Select the parent unordered list (`<ul>`) with the class `language`. This is done using `document.querySelector('.language')`.
+- **Append** the list item element (which now contains the text node) to the parent. This is done using `.appendChild(li)`.
+
+Here's the optimized function implementation:
 
 ```javascript
-allH2.forEach(function(h) { // h represents each h2 element in the NodeList
-    h.style.color = 'red'; // Change color of each h2
-    h.style.backgroundColor = 'black'; // Change background color of each h2
-});
+function addOptiLanguage(langName) {
+    const li = document.createElement('li'); // Create <li> element
+    // Create text node and append directly to <li>
+    li.appendChild(document.createTextNode(langName));
+    document.querySelector('.language').appendChild(li); // Select parent and append child
+}
 ```
 
-- This demonstrated applying manipulation to multiple elements selected via `querySelectorAll`.
+To use the function, call it:
 
-## Conclusion and Next Steps
+```javascript
+addOptiLanguage("golang"); // Adds "golang"
+```
 
-- The video covered selecting individual elements (`getElementById`, `querySelector`) and multiple elements (`getElementsByClassName`, `querySelectorAll`).
-- It explained the different return types (`HTMLCollection`, `NodeList`) and how to iterate through them (especially using `forEach` for NodeList) or convert them to Arrays (`Array.from`).
-- It showed how to access and manipulate properties, attributes, styles, and content of selected elements.
-- All the work done in the console can eventually be written in script tags or separate JavaScript files to affect the page dynamically.
-- The next steps involve creating new elements and integrating data (e.g., from a database) to update the DOM.
-- The process of selecting elements, looping through data, and updating existing or new DOM elements is fundamental for building interactive web pages.
-- Step-by-step learning makes the process easier and more enjoyable.
+Both approaches add the element, but the optimized method using `appendChild` with a text node is generally recommended for larger projects as it doesn't require parsing the entire HTML tree like `innerHTML` can.
+
+### Editing List Items
+
+Editing values requires first **selecting** the element to be edited.
+`document.querySelector` is used for selection. It supports various CSS selectors.
+
+**Example: Editing the second language (Python)**
+To select the second list item, a selector like `li:nth-child(2)` can be used. This selects the second `<li>` element within its parent.
+
+```javascript
+const secondLanguage = document.querySelector('li:nth-child(2)'); // Selects the second <li> element
+```
+
+**Editing Method 1: Using `innerHTML`**
+Once selected, you can change the content using `innerHTML`.
+
+```javascript
+secondLanguage.innerHTML = "mojo"; // Replaces the content of the second <li> with "mojo"
+```
+
+This method works but, as discussed earlier, using `innerHTML` can be less **optimized**.
+
+**Editing Method 2: Using `replaceWith`**
+A more structured approach involves creating a *new* element with the desired content and replacing the existing element with it.
+
+- Create a *new* list item element.
+- Add content to the new list item. `textContent` can be used for this (`newLi.textContent = "Mojo"`). While similar to `innerHTML`, `textContent` primarily deals with text content and is often simpler when you don't need to parse HTML within the content.
+- Select the existing element you want to replace (e.g., `secondLanguage`).
+- Use the `replaceWith()` method on the selected element, passing the new element as the argument.
+
+Here's the implementation:
+
+```javascript
+const newLi = document.createElement('li'); // Create a new <li> element
+newLi.textContent = "Mojo"; // Add text content to the new element
+
+const secondLanguage = document.querySelector('li:nth-child(2)'); // Select the element to be replaced
+secondLanguage.replaceWith(newLi); // Replace the selected element with the new element
+```
+
+Using `replaceWith` replaces the entire selected element with the new one.
+
+**Editing Method 3: Using `outerHTML`**
+Another method is to change the `outerHTML` property of the selected element. This replaces the selected element *and* its contents with the new HTML string provided.
+
+**Example: Editing the first language (JavaScript)**
+To select the first list item, a selector like `li:first-child` can be used.
+
+```javascript
+const firstLang = document.querySelector('li:first-child'); // Selects the first <li> element
+```
+
+Then, change its `outerHTML`:
+
+```javascript
+firstLang.outerHTML = '<li>TypeScript</li>'; // Replaces the entire first <li> element with a new one containing "TypeScript"
+```
+
+This requires providing the full HTML tag for the new element.
+
+Several ways to edit elements have been shown:
+
+- Changing `innerHTML`.
+- Replacing with a new element using `replaceWith()`.
+- Changing `outerHTML`.
+
+### Removing List Items
+
+Removing elements is described as simple.
+Again, the element to be removed must first be **selected**.
+
+**Example: Removing the last language (Golang)**
+To select the last list item, a selector like `li:last-child` can be used.
+
+```javascript
+const lastLang = document.querySelector('li:last-child'); // Selects the last <li> element
+```
+
+Once selected, the element can be removed using the `remove()` method.
+
+```javascript
+lastLang.remove(); // Removes the selected element from the DOM
+```
+
+This is the simplest way to remove an element given its reference.
+
+### Conclusion and Next Steps
+
+The video concludes by summarizing the DOM manipulation topics covered so far:
+
+- How the DOM works and its tree structure.
+- Node list and traversing techniques (parents, children, siblings).
+- Creating new elements, appending, styling, and margins.
+- Using `querySelector` and selectors like `nth-child`.
+- Editing elements using various methods (`innerHTML`, `replaceWith`, `outerHTML`).
+- Removing elements using the `remove()` method.
+
+The next step is to start building **projects** using these concepts. The focus will be on functionality in JavaScript, not extensive CSS styling, though basic styling resources may be provided separately. The goal is to build confidence in project development.

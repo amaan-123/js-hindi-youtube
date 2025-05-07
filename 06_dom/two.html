@@ -18,22 +18,26 @@
 <script>
     const parent = document.querySelector('.parent')
     // console.log(parent);
-    // console.log(parent.children);
-    // console.log(parent.children[1].innerHTML);
+    console.log(parent.children);
+    console.log(parent.children[1].innerHTML);
 
     // for (let i = 0; i < parent.children.length; i++) {
     //      console.log(parent.children[i].innerHTML);
         
     // }
-    parent.children[1].style.color = "orange"
+    // parent.children[1].style.color = "orange"
     // console.log(parent.firstElementChild);
     // console.log(parent.lastElementChild);
 
     const dayOne = document.querySelector('.day')
     // console.log(dayOne);
-    // console.log(dayOne.parentElement);
-    // console.log(dayOne.nextElementSibling);
+    console.log(dayOne.parentElement);
+    console.log(dayOne.nextElementSibling);
 
     console.log("NODES: ", parent.childNodes);
+    // childNodes will return all the nodes including text nodes and comment nodes
+    // in the above example, it will return 11 nodes
+    // text nodes are the spaces between the elements(6) and comment node(1) is the single comment in the code
+    // the rest are the 4 divs
 </script>
 </html>
