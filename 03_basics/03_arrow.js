@@ -1,49 +1,49 @@
-// // this in object 
+// // this in object
 // const user = {
-//     username: "hitesh",
-//     price: 999,
+//   username: "hitesh",
+//   price: 999,
 
-//     welcomeMessage: function() {
-//         console.log(`${this.username} , welcome to website`); 
-//         console.log(this); 
-//     }
+//   welcomeMessage: function () {
+//     console.log(`${this.username} , welcome to website`);
+//     console.log(this);
+//   },
+// };
 
-// }
+// user.welcomeMessage();
+// user.username = "sam";
+// user.welcomeMessage();
 
-// user.welcomeMessage()
-// user.username = "sam"
-// user.welcomeMessage()
-
-// console.log(this); 
+// console.log(this);
 // // outputs: {} (in Node.js)
 // // outputs: Window (in browser)
 
 // // this in functions
-// function chai(){
-//     let username = "hitesh"
-//     console.log(this.username); // undefined
+// function chai() {
+//   let username = "hitesh";
+//   console.log(this.username); // undefined
 // }
+// chai();
 
-// function chai(){
-//     let username = "hitesh"
-//     console.log(this); // outputs: Object [global](in Node.js)
+// function chai() {
+//   let username = "hitesh";
+//   console.log(this); // outputs: Object [global](in Node.js)
 // }
-// chai()
-
+// chai();
 
 // const chai = function () {
-//     let username = "hitesh"
-//     console.log(this.username); // undefined
-// }
+//   let username = "hitesh";
+//   console.log(this.username); // undefined
+// };
+// chai();
 
-// const chai =  () => {
-//     let username = "hitesh"
-//     console.log(this); 
-//     // outputs: {} (in Node.js)
-//     // outputs: Window (in browser)
-// }
+// const chai = () => {
+//   let username = "hitesh";
+//   console.log(this);
+//   // outputs: {} (in Node.js)
+//   // outputs: Window (in browser)
+// };
 
-// chai()
+// chai();
 
 // const addTwo = (num1, num2) => {
 //     return num1 + num2
@@ -53,13 +53,12 @@
 // const addTwo = (num1, num2) =>  num1 + num2
 // const addTwo = (num1, num2) => ( num1 + num2 ) // used in React
 
-// to implicitly return objects in arrow functions, put parentheses around them
-const addTwo = (num1, num2) => ({username: "hitesh"})
+// // to implicitly return objects in arrow functions, put parentheses around them
+// const addTwo = (num1, num2) => ({ username: "hitesh" });
 
+// console.log(addTwo(3, 4));
 
-console.log(addTwo(3, 4))
-
-
+// we use arrow functions often inside
 // const myArray = [2, 5, 3, 7, 8]
 
 // myArray.forEach()
